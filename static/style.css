@@ -1,0 +1,68 @@
+* {
+  font-family: 'Helvetica', sans-serif;
+}
+
+body {
+	text-align: center;
+}
+
+.center {
+     margin: 0 auto;
+     width: 500px; 
+     padding: 30px 0 30px 0;
+}
+
+#container {
+  background-color: purple;
+  margin-top: 30px;
+}
+
+form {
+  padding: 30px;
+}
+
+textarea {
+  	border: 3;
+    padding: 5px;
+    margin: 20px;
+  	font-size: 12px;
+}
+
+button {
+  	background: black;
+  	color: white;
+    padding: 5px;
+}
+
+h1 {
+	font-size: 24px;
+	text-align: center;
+	color: black;
+	margin: 0 auto;
+}
+
+div {
+	margin: 0 auto;
+	text-align: center;
+}
+
+p {
+  color: rgb(227,228,225);
+}
+
+a:link {
+  color: rgb(227,228,225);
+}
+
+a:visited {
+  color: rgb(227,228,225);
+}
+
+@media (max-width: 500px) {
+      h1 {
+        font-size: 36px;
+        padding: 5px;
+      }
+      img {
+        height: 100px;
+      }

@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="center">
+		<h1>save a clip:</h1>
+		<form role="form" action="/add" method="post">
+			<textarea name="clip" rows="12" cols="60" placeholder="paste a clip to save"></textarea><br />
+			<button type="submit">save</button>
+		</form>
+	</div>
+{% endblock %}
