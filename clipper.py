@@ -4,6 +4,7 @@
 import sqlite3, os
 from flask import Flask, request, g, redirect, url_for, render_template
 from contextlib import closing
+from flask.ext.cors import CORS
 
 #TODO: test database getting and writing somehow, templates!
 
@@ -15,6 +16,9 @@ PASSWORD = 'default'
 
 app = Flask(__name__)
 app.config.from_object(__name__) #switch to config.py file later
+
+#allow cross-origin request sharing for posting clips from web
+cors = CORS(app)
 
 #database funcs
 def connect_db():
@@ -53,6 +57,20 @@ def show_clips():
 def add_clip():
 	'''adds clips to db, redirects to show all clips'''
 	g.db.execute('insert into clips (clip) values (?)', [request.form['clip']])
+	g.db.commit()
+	return redirect(url_for('show_clips'))
+
+# @app.route('/delete', methods = ['POST'])
+# def delete_clip():
+# 	'''removes clip from the db'''
+# 	g.db.execute('delete from clips where clip')
+# 	g.db.commit()
+# 	return redirect(url_for('show_clips'))
+
+@app.route('/add_from_web', methods = ['POST'])
+def add_from_web():
+	print request.args['content']
+	g.db.execute('insert into clips (clip) value (?)', request.args['content'])
 	g.db.commit()
 	return redirect(url_for('show_clips'))
 
