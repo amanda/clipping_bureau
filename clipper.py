@@ -6,8 +6,6 @@ from flask import Flask, request, g, redirect, url_for, render_template
 from contextlib import closing
 from flask.ext.cors import CORS
 
-#TODO: test database getting and writing somehow, templates!
-
 DATABASE = 'clipper.db'
 DEBUG = True
 SECRET_KEY = 'development key'
@@ -60,6 +58,7 @@ def add_clip():
 	g.db.commit()
 	return redirect(url_for('show_clips'))
 
+#TODO
 # @app.route('/delete', methods = ['POST'])
 # def delete_clip():
 # 	'''removes clip from the db'''
