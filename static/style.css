@@ -47,15 +47,7 @@ div {
 }
 
 p {
-  color: rgb(227,228,225);
-}
-
-a:link {
-  color: rgb(227,228,225);
-}
-
-a:visited {
-  color: rgb(227,228,225);
+  color: rgb(0, 0, 0);
 }
 
 @media (max-width: 500px) {

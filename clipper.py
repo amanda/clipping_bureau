@@ -46,9 +46,7 @@ def index():
 def show_clips():
 	'''show all saved clips, most recent at top'''
 	cur = g.db.execute('select clip from clips order by id desc')
-	clips = cur.fetchall()
-	print "clips: "
-	print clips
+	clips = [c[0] for c in cur.fetchall()]
 	return render_template('clips.html', clips=clips)
 	
 @app.route('/add', methods = ['POST'])

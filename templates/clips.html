@@ -3,8 +3,9 @@
 	<div id="clips" class="center">
 		<h1>saved clips:</h1>
 		{% if clips %}
-		<p>sup</p>
-		<p>{{ clips }}</p>
+		{% for clip in clips %}
+		<p>{{ clip }}</p>
+		{% endfor %}
 		{% endif %}
 	</div>
 {% endblock %}
