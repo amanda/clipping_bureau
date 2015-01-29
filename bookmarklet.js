@@ -10,7 +10,8 @@ function getClip() {
       console.log(data);
       clipperRequest.open("POST", url, true);
       clipperRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      clipperRequest.send(data);
+      clipperRequest.send(data); //websites don't let you get stuff fromt the DOM to your server? security!
+      //change to alert box -> save clip instead
     }
   }
 }
