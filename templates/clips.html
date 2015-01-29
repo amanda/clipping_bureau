@@ -4,7 +4,10 @@
 		<h1>saved clips:</h1>
 		{% if clips %}
 		{% for clip in clips %}
-		<p>{{ clip }}</p>
+		<p>
+			{{ clip.clip}} <br/>
+			<a href="{{ url_for('delete_clip', clip_id = clip.id) }}">delete me</a>
+		</p>
 		{% endfor %}
 		{% endif %}
 	</div>

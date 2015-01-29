@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sqlite3, os
-from flask import Flask, request, g, redirect, url_for, render_template
+from flask import Flask, request, g, redirect, url_for, render_template, flash
 from contextlib import closing
 from flask.ext.cors import CORS
 
@@ -47,8 +47,8 @@ def index():
 @app.route('/clips')
 def show_clips():
 	'''show all saved clips, most recent at top'''
-	cur = g.db.execute('select clip from clips order by id desc')
-	clips = [c[0] for c in cur.fetchall()]
+	cur = g.db.execute('select clip, id from clips order by id desc')
+	clips = [{"clip": row[0], "id": row[1]} for row in cur.fetchall()]
 	return render_template('clips.html', clips=clips)
 	
 @app.route('/add', methods = ['POST'])
@@ -58,13 +58,13 @@ def add_clip():
 	g.db.commit()
 	return redirect(url_for('show_clips'))
 
-#TODO
-# @app.route('/delete', methods = ['POST'])
-# def delete_clip():
-# 	'''removes clip from the db'''
-# 	g.db.execute('delete from clips where clip')
-# 	g.db.commit()
-# 	return redirect(url_for('show_clips'))
+@app.route('/delete/<int:clip_id>')
+def delete_clip(clip_id):
+	'''removes clip from the db'''
+	g.db.execute('delete from clips where id=' + str(clip_id))
+	g.db.commit()
+	flash('clip was successfully deleted.')
+	return redirect(url_for('show_clips'))
 
 @app.route('/add_from_web', methods = ['POST'])
 def add_from_web():
