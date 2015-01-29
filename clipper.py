@@ -68,10 +68,9 @@ def add_clip():
 
 @app.route('/add_from_web', methods = ['POST'])
 def add_from_web():
-	print request.args.get('content')
 	g.db.execute('insert into clips (clip) values (?)', [request.args.get('content')])
 	g.db.commit()
-	return redirect(url_for('show_clips'))
+	return "saved clip from web"
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
