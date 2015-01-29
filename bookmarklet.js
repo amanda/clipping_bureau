@@ -2,16 +2,14 @@ function getClip() {
   if (typeof window.getSelection() !== "undefined") {
     var selection = window.getSelection();
     if (selection.rangeCount) {
-      var newClip = selection;
-      console.log(newClip);
+      //get copied text and save in variable
+      var newClip = selection.toString();
+      //copied text -> server
       var clipperRequest = new XMLHttpRequest();
-      var url = 'http://127.0.0.1:5000/add_from_web'; //running locally for now
-      var data = 'content=' + newClip;
-      console.log(data);
+      var url = 'http://127.0.0.1:5000/add_from_web?content=' + newClip; //local
       clipperRequest.open("POST", url, true);
       clipperRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      clipperRequest.send(data); //websites don't let you get stuff fromt the DOM to your server? security!
-      //change to alert box -> save clip instead
+      clipperRequest.send();
     }
   }
 }

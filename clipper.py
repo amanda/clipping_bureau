@@ -68,8 +68,8 @@ def add_clip():
 
 @app.route('/add_from_web', methods = ['POST'])
 def add_from_web():
-	print request.args['content']
-	g.db.execute('insert into clips (clip) value (?)', request.args['content'])
+	print request.args.get('content')
+	g.db.execute('insert into clips (clip) values (?)', [request.args.get('content')])
 	g.db.commit()
 	return redirect(url_for('show_clips'))
 
